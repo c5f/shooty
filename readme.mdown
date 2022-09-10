@@ -1,0 +1,30 @@
+shooty
+======
+
+section plan
+------------
+
+- tank with movement
+- handle wasd/mouse input
+  - _gamepad?_
+    - input mappings are already configured in the starting project
+- enemy turret
+- projectiles
+- hitpoints, damage, destruction
+- vfx (smoke, explosions), sfx
+- win/lose condition
+
+adding a new class
+------------------
+
+1. create the class (from the gui editor)
+2. close the gui editor
+3. run the ToonTanksEditor Win64 Developemnt Build build task in vscode
+4. reopen the gui editor
+5. run live coding
+
+---
+
+[video][https://www.gamedev.tv/courses/1638644/lectures/39207713]
+[pawn creation][https://www.gamedev.tv/courses/1638644/lectures/39208409]
+[uproperty visibility][https://www.gamedev.tv/courses/1638644/lectures/39256795]
