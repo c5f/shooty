@@ -1,0 +1,19 @@
+shooty
+======
+
+section plan
+------------
+
+- tank with movement
+- handle wasd/mouse input
+  - _gamepad?_
+    - input mappings are already configured in the starting project
+- enemy turret
+- projectiles
+- hitpoints, damage, destruction
+- vfx (smoke, explosions), sfx
+- win/lose condition
+
+---
+
+[video][https://www.gamedev.tv/courses/1638644/lectures/39207713]
