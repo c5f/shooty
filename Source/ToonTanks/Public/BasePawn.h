@@ -13,7 +13,14 @@ class TOONTANKS_API ABasePawn : public APawn
 	GENERATED_BODY()
 
 public:
+
 	ABasePawn();
+
+protected:
+
+	void RotateTurret(FVector Target);
+
+private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	class UCapsuleComponent* Collider;

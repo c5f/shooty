@@ -39,6 +39,19 @@ void ATank::Turn(float Value)
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (Controller != nullptr)
+	{
+		FHitResult Hit;
+		if (!Controller->GetHitResultUnderCursor(ECC_Visibility, false, Hit))
+		{
+			return;
+		}
+
+		DrawDebugSphere(GetWorld(), Hit.ImpactPoint, 10.0, 20, FColor::Orange, false);
+
+		RotateTurret(Hit.ImpactPoint);
+	}
 }
 
 void ATank::BeginPlay()
