@@ -3,6 +3,7 @@
 
 #include "BasePawn.h"
 
+#include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
 
 ABasePawn::ABasePawn()
@@ -26,23 +27,13 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
-//////////////////////
-// unreal overrides
-
-// Called when the game starts or when spawned
-void ABasePawn::BeginPlay()
+void ABasePawn::RotateTurret(FVector Target)
 {
-	Super::BeginPlay();
-}
-
-// Called every frame
-void ABasePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
-// Called to bind functionality to input
-void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	FVector ToTarget = Target - TurretMesh->GetComponentLocation();
+	FRotator Rotator(0.f, ToTarget.Rotation().Yaw, 0.f);
+	TurretMesh->SetWorldRotation(FMath::RInterpTo(
+		TurretMesh->GetComponentRotation(),
+		Rotator,
+		UGameplayStatics::GetWorldDeltaSeconds(this),
+		10.f));
 }
