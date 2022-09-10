@@ -15,9 +15,6 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	ABasePawn();
 
-	UPROPERTY(EditAnywhere, Category = "Shooty", BlueprintReadWrite)
-	float Speed = 400.0;
-
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	class UCapsuleComponent* Collider;
 
