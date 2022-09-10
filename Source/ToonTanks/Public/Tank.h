@@ -23,4 +23,12 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	class UCameraComponent* Camera;
+
+	void Move(float Value);
+
+public:
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(
+		class UInputComponent* PlayerInputComponent
+	) override;
 };
