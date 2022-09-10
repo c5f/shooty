@@ -17,3 +17,4 @@ section plan
 ---
 
 [video][https://www.gamedev.tv/courses/1638644/lectures/39207713]
+[pawn creation][https://www.gamedev.tv/courses/1638644/lectures/39208409]
