@@ -8,6 +8,9 @@ section plan
 - handle wasd/mouse input
   - _gamepad?_
     - input mappings are already configured in the starting project
+    - the turret motion follows a hitscan with the mouse, so a separate control strategy
+      is required for dual stick
+      - this could be a good learning project to publish -- geometry wars
 - enemy turret
 - projectiles
 - hitpoints, damage, destruction

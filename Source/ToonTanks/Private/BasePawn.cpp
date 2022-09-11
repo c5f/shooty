@@ -35,5 +35,5 @@ void ABasePawn::RotateTurret(FVector Target)
 		TurretMesh->GetComponentRotation(),
 		Rotator,
 		UGameplayStatics::GetWorldDeltaSeconds(this),
-		10.f));
+		TurretRotationInterpolationSpeed));
 }

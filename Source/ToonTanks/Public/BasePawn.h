@@ -33,4 +33,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	USceneComponent* ProjectileSpawnPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	float TurretRotationInterpolationSpeed = 10.f;
 };
