@@ -37,3 +37,16 @@ void ABasePawn::RotateTurret(FVector Target)
 		UGameplayStatics::GetWorldDeltaSeconds(this),
 		TurretRotationInterpolationSpeed));
 }
+
+void ABasePawn::FireProjectile()
+{
+	// todo: fire the projectile
+	DrawDebugSphere(
+		GetWorld(),
+		ProjectileSpawnPoint->GetComponentLocation(),
+		20.f,
+		20,
+		FColor::Orange,
+		false,
+		2.f);
+}

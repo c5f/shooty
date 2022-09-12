@@ -20,6 +20,8 @@ protected:
 
 	void RotateTurret(FVector Target);
 
+	void FireProjectile();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
