@@ -22,10 +22,10 @@ protected:
 
 private:
 
-	UPROPERTY(EditAnywhere., Category = "Shooty")
+	UPROPERTY(EditAnywhere, Category = "Shooty")
 	float FireRange = 1200.f;
 
-	UPROPERTY(EditAnywhere., Category = "Shooty")
+	UPROPERTY(EditAnywhere, Category = "Shooty")
 	float FireRateInSeconds = 2.f;
 
 	class ATank* Target;
