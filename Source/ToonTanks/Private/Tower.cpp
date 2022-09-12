@@ -3,8 +3,28 @@
 #include "Tower.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 #include "Tank.h"
 
+
+void ATower::FireTimerThunk()
+{
+	if (IsTargetInRange())
+	{
+		ATower::FireProjectile();
+	}
+}
+
+bool ATower::IsTargetInRange()
+{
+	if (Target == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("tower has no target"));
+		return false;
+	}
+
+	return FVector::Dist(GetActorLocation(), Target->GetActorLocation()) <= FireRange;
+}
 
 //////////////////////
 // unreal overrides
@@ -12,21 +32,10 @@
 // Called every frame
 void ATower::Tick(float DeltaTime)
 {
-	if (Target == nullptr)
+	if (IsTargetInRange())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("tower has no target"));
-		return;
+		RotateTurret(Target->GetActorLocation());
 	}
-
-	auto TargetLocation = Target->GetActorLocation();
-	auto Distance = FVector::Dist(GetActorLocation(), TargetLocation);
-	if (false)  // todo: add range property
-	{
-		// out of range -- nothing to do
-		return;
-	}
-
-	RotateTurret(TargetLocation);
 }
 
 void ATower::BeginPlay()
@@ -34,4 +43,7 @@ void ATower::BeginPlay()
 	Super::BeginPlay();
 
 	Target = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
+
+	GetWorldTimerManager().SetTimer(
+		FireTimerHandle, this, &ATower::FireTimerThunk, FireRateInSeconds, true);
 }
