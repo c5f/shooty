@@ -38,4 +38,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	float TurretRotationInterpolationSpeed = 10.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Shooty")
+	TSubclassOf<class AProjectile> ProjectileClass;
 };

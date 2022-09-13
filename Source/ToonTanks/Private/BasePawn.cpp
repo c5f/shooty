@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
 
+#include "Projectile.h"
+
 ABasePawn::ABasePawn()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve
@@ -40,13 +42,8 @@ void ABasePawn::RotateTurret(FVector Target)
 
 void ABasePawn::FireProjectile()
 {
-	// todo: fire the projectile
-	DrawDebugSphere(
-		GetWorld(),
+	GetWorld()->SpawnActor<AProjectile>(
+		ProjectileClass,
 		ProjectileSpawnPoint->GetComponentLocation(),
-		20.f,
-		20,
-		FColor::Orange,
-		false,
-		2.f);
+		ProjectileSpawnPoint->GetComponentRotation());
 }
