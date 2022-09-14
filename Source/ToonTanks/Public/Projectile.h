@@ -28,4 +28,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = "Shooty")
 	class UProjectileMovementComponent* Mover;
+
+private:
+	UFUNCTION()
+	void OnHit(
+		UPrimitiveComponent* HitComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComponent,
+		FVector NormalImpulse,
+		const FHitResult& HitResult);
 };
