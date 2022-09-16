@@ -28,6 +28,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	float MaxHealth = 100.f;
 
-	UPROPERTY(EditAnywhere, Category = "Shooty")
 	float Health = 0.f;
+
+	UFUNCTION()
+	void DamageTaken(
+		AActor* DamagedActor,
+		float Damage,
+		const UDamageType* DamageType,
+		class AController* Instigator,
+		AActor* DamageCauser);
 };
