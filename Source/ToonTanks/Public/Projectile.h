@@ -30,6 +30,12 @@ public:
 	class UProjectileMovementComponent* Mover;
 
 private:
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	bool IsFriendlyFireEnabled = false;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	float Damage = 50.f;
+
 	UFUNCTION()
 	void OnHit(
 		UPrimitiveComponent* HitComponent,

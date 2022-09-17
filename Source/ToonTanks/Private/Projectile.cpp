@@ -3,7 +3,9 @@
 
 #include "Projectile.h"
 
+#include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+
 
 // Sets default values
 AProjectile::AProjectile()
@@ -30,13 +32,26 @@ void AProjectile::OnHit(
 		FVector NormalImpulse,
 		const FHitResult& HitResult)
 {
-	UE_LOG(
-		LogTemp,
-		Display,
-		TEXT("projectile hit detected between %s and %s (%s)"),
-		*HitComponent->GetName(),
-		*OtherActor->GetName(),
-		*OtherComponent->GetName());
+	auto MyOwner = GetOwner();
+	if (MyOwner == nullptr || OtherActor == nullptr)
+	{
+		// missing necessary information to apply damage
+		return;
+	}
+
+	// extract `bool AProjectile::IsFriendlyFire(OtherActor);` if necessary
+	if ((OtherActor == this || OtherActor == MyOwner) && !IsFriendlyFireEnabled)
+	{
+		return;
+	}
+
+	UGameplayStatics::ApplyDamage(
+		OtherActor,
+		Damage,
+		MyOwner->GetInstigatorController(),
+		this,
+		UDamageType::StaticClass());
+	Destroy();
 }
 
 //////////////////////

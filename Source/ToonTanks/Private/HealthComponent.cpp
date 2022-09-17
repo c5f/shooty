@@ -18,7 +18,13 @@ void UHealthComponent::DamageTaken(
 	class AController* Instigator,
 	AActor* DamageCauser)
 {
-	// todo: check friendly fire
+	if (Damage <= 0.f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("invalid damage value received"));
+		return;
+	}
+
+	UE_LOG(LogTemp, Display, TEXT("applying %f damage to %s"), Damage, *DamagedActor->GetName());
 
 	Health -= Damage;
 }
