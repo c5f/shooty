@@ -14,8 +14,13 @@ section plan
 - enemy turret
 - projectiles
 - hitpoints, damage, destruction
-- vfx (smoke, explosions), sfx
+  + destruction:
+    * handle destruction with a pawn function
+    * handle actor death with a game mode function
+    * plumbing and binds to invoke these functions
+      - apply damage -> damage taken -> actor death -> handle destruction
 - win/lose condition
+- vfx (smoke, explosions), sfx
 
 adding a new class
 ------------------

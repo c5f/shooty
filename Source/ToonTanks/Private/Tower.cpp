@@ -7,6 +7,12 @@
 #include "Tank.h"
 
 
+void ATower::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
+
 void ATower::FireTimerThunk()
 {
 	if (IsTargetInRange())

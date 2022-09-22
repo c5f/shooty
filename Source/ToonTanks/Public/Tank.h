@@ -17,6 +17,10 @@ class TOONTANKS_API ATank : public ABasePawn
 public:
 	ATank();
 
+	void HandleDestruction();
+
+	APlayerController* GetPlayerController() const;
+
 	UPROPERTY(EditAnywhere, Category = "Shooty", BlueprintReadWrite)
 	float Speed = 400.0;
 
