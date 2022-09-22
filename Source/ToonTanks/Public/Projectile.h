@@ -28,4 +28,19 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = "Shooty")
 	class UProjectileMovementComponent* Mover;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	bool IsFriendlyFireEnabled = false;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	float Damage = 50.f;
+
+	UFUNCTION()
+	void OnHit(
+		UPrimitiveComponent* HitComponent,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComponent,
+		FVector NormalImpulse,
+		const FHitResult& HitResult);
 };

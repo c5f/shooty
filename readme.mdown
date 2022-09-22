@@ -14,20 +14,35 @@ section plan
 - enemy turret
 - projectiles
 - hitpoints, damage, destruction
-- vfx (smoke, explosions), sfx
+  + destruction:
+    * handle destruction with a pawn function
+    * handle actor death with a game mode function
+    * plumbing and binds to invoke these functions
+      - apply damage -> damage taken -> actor death -> handle destruction
 - win/lose condition
+- vfx (smoke, explosions), sfx
 
 adding a new class
 ------------------
 
-1. create the class (from the gui editor)
-2. close the gui editor
+i've run into several issues where modifying c++ code from beneath the running editor
+session can lead to unexpected behaviour _(missing UPROPERTIES)_ or editor crashes. in
+order to alleviate this, this is the workflow for cleaning and rebuilding the project from
+the context of creating a new class.
+
+1. create the class (from the unreal editor): `Tools > New C++ Class...`
+2. close the unreal editor
 3. run the ToonTanksEditor Win64 Developemnt Build build task in vscode
-4. reopen the gui editor
-5. run live coding
+  - _**note:** the ToonTanksEditor Win64 Development Rebuild build task will also clean_
+  - _**note:** ToonTanksEditor Win64 Development can be used as a debug launch target_
+4. reopen the unreal editor
+5. verify changes and continue developing
 
 ---
 
-[video][https://www.gamedev.tv/courses/1638644/lectures/39207713]
-[pawn creation][https://www.gamedev.tv/courses/1638644/lectures/39208409]
-[uproperty visibility][https://www.gamedev.tv/courses/1638644/lectures/39256795]
+- [project intro](https://www.gamedev.tv/courses/1638644/lectures/39207713)
+- [pawn creation](https://www.gamedev.tv/courses/1638644/lectures/39208409)
+- [uproperty visibility](https://www.gamedev.tv/courses/1638644/lectures/39256795)
+- [timer thunk example](https://www.gamedev.tv/courses/1638644/lectures/39274348)
+- [spawn blueprint instance](https://www.gamedev.tv/courses/1638644/lectures/39274364)
+- [damage binding](https://www.gamedev.tv/courses/1638644/lectures/39275429)
