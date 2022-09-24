@@ -23,4 +23,10 @@ protected:
 
 private:
 	class ATank* Tank;
+
+	class AToonTanksPlayerController* ToonTanksPlayerController;
+	
+	float StartDelaySeconds = 3.f;
+
+	void HandleGameStart();
 };
