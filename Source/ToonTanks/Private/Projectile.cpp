@@ -32,6 +32,12 @@ void AProjectile::OnHit(
 		FVector NormalImpulse,
 		const FHitResult& HitResult)
 {
+	if (HitParticles != nullptr)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(
+			this, HitParticles, GetActorLocation(), GetActorRotation());
+	}
+
 	auto MyOwner = GetOwner();
 	if (MyOwner == nullptr || OtherActor == nullptr)
 	{

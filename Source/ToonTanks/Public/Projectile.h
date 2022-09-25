@@ -43,4 +43,7 @@ private:
 		UPrimitiveComponent* OtherComponent,
 		FVector NormalImpulse,
 		const FHitResult& HitResult);
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	class UParticleSystem* HitParticles;
 };
