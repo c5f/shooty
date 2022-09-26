@@ -5,6 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 
 // Sets default values
@@ -21,6 +22,10 @@ AProjectile::AProjectile()
 	Mover = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Mover"));
 	Mover->InitialSpeed = 400.f;
 	Mover->MaxSpeed = 800.f;
+
+	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>(
+		TEXT("TrailParticles"));
+	TrailParticles->SetupAttachment(RootComponent);
 
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }

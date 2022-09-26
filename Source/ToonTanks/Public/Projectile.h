@@ -46,4 +46,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	class UParticleSystem* HitParticles;
+
+	UPROPERTY(VisibleAnywhere, Category = "Shooty")
+	class UParticleSystemComponent* TrailParticles;
 };
