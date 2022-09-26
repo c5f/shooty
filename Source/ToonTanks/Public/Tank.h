@@ -27,6 +27,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Shooty", BlueprintReadWrite)
 	float TurnRate = 90.0;
 
+	bool bIsAlive = true;
+
 private:
 	UPROPERTY(EditAnywhere, Category = "Shooty")
 	class USpringArmComponent* SpringArm;

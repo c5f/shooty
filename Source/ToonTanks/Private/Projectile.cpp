@@ -4,7 +4,9 @@
 #include "Projectile.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Camera/CameraShakeBase.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 
 // Sets default values
@@ -22,6 +24,10 @@ AProjectile::AProjectile()
 	Mover->InitialSpeed = 400.f;
 	Mover->MaxSpeed = 800.f;
 
+	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>(
+		TEXT("TrailParticles"));
+	TrailParticles->SetupAttachment(RootComponent);
+
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 
@@ -32,6 +38,17 @@ void AProjectile::OnHit(
 		FVector NormalImpulse,
 		const FHitResult& HitResult)
 {
+	if (HitParticles == nullptr)
+	{
+		// fixme: this type of runtime check seems egregious
+		UE_LOG(LogTemp, Warning, TEXT("no hit particles configured"));
+	}
+	else
+	{ 
+		UGameplayStatics::SpawnEmitterAtLocation(
+			this, HitParticles, GetActorLocation(), GetActorRotation());
+	}
+
 	auto MyOwner = GetOwner();
 	if (MyOwner == nullptr || OtherActor == nullptr)
 	{
@@ -45,6 +62,9 @@ void AProjectile::OnHit(
 		return;
 	}
 
+	UGameplayStatics::PlaySoundAtLocation(
+		this, HitSound, GetActorLocation());
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
 	UGameplayStatics::ApplyDamage(
 		OtherActor,
 		Damage,
@@ -61,6 +81,9 @@ void AProjectile::OnHit(
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UGameplayStatics::PlaySoundAtLocation(
+		this, LaunchSound, GetActorLocation());
 }
 
 // Called every frame

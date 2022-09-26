@@ -43,4 +43,19 @@ private:
 		UPrimitiveComponent* OtherComponent,
 		FVector NormalImpulse,
 		const FHitResult& HitResult);
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	class UParticleSystem* HitParticles;
+
+	UPROPERTY(VisibleAnywhere, Category = "Shooty")
+	class UParticleSystemComponent* TrailParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	class USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;
 };

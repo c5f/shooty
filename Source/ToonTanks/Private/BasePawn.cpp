@@ -5,6 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 #include "Projectile.h"
 
@@ -31,7 +32,16 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDestruction()
 {
-	// todo: add vfx/sfx
+	if (DeathParticles == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("no death particles configured"));
+		return;
+	}
+	UGameplayStatics::PlaySoundAtLocation(
+		this, DeathSound, GetActorLocation());
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
+	UGameplayStatics::SpawnEmitterAtLocation(
+		this, DeathParticles, GetActorLocation(), GetActorRotation());
 }
 
 void ABasePawn::RotateTurret(FVector Target)
