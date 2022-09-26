@@ -15,7 +15,7 @@ void ATower::HandleDestruction()
 
 void ATower::FireTimerThunk()
 {
-	if (IsTargetInRange())
+	if (IsTargetInRange() && Target->bIsAlive)
 	{
 		ATower::FireProjectile();
 	}

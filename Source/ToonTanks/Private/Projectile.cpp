@@ -4,6 +4,7 @@
 #include "Projectile.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Camera/CameraShakeBase.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -63,6 +64,7 @@ void AProjectile::OnHit(
 
 	UGameplayStatics::PlaySoundAtLocation(
 		this, HitSound, GetActorLocation());
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
 	UGameplayStatics::ApplyDamage(
 		OtherActor,
 		Damage,
