@@ -37,8 +37,13 @@ void AProjectile::OnHit(
 		FVector NormalImpulse,
 		const FHitResult& HitResult)
 {
-	if (HitParticles != nullptr)
+	if (HitParticles == nullptr)
 	{
+		// fixme: this type of runtime check seems egregious
+		UE_LOG(LogTemp, Warning, TEXT("no hit particles configured"));
+	}
+	else
+	{ 
 		UGameplayStatics::SpawnEmitterAtLocation(
 			this, HitParticles, GetActorLocation(), GetActorRotation());
 	}
