@@ -49,4 +49,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Shooty")
 	class UParticleSystemComponent* TrailParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	class USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Shooty")
+	USoundBase* HitSound;
 };

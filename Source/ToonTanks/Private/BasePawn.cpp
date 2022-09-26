@@ -37,6 +37,8 @@ void ABasePawn::HandleDestruction()
 		UE_LOG(LogTemp, Warning, TEXT("no death particles configured"));
 		return;
 	}
+	UGameplayStatics::PlaySoundAtLocation(
+		this, DeathSound, GetActorLocation());
 	UGameplayStatics::SpawnEmitterAtLocation(
 		this, DeathParticles, GetActorLocation(), GetActorRotation());
 }

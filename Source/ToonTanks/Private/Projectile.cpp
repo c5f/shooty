@@ -61,6 +61,8 @@ void AProjectile::OnHit(
 		return;
 	}
 
+	UGameplayStatics::PlaySoundAtLocation(
+		this, HitSound, GetActorLocation());
 	UGameplayStatics::ApplyDamage(
 		OtherActor,
 		Damage,
@@ -77,6 +79,9 @@ void AProjectile::OnHit(
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	UGameplayStatics::PlaySoundAtLocation(
+		this, LaunchSound, GetActorLocation());
 }
 
 // Called every frame
